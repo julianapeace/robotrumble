@@ -14,14 +14,14 @@ header.masthead {
 }
 
 /* Content */
-.container{
+/* .container{
   display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding-top:2rem;
   text-align:center;
-}
+} */
 
 body {
 	background-color: #ffffff;
@@ -38,13 +38,11 @@ body {
   justify-content: center;
 }
 
-.robot-holder{
-  /* border: 1px solid white; */
+/* .robot-holder{
   display:flex;
   align-items: stretch;
   justify-content: space-between;
-  /* width: 80%; */
-}
+} */
 
 * {
   box-sizing:border-box;
@@ -77,7 +75,7 @@ body {
 .robot-2-button-holder > .betButton { opacity: 0; }
 .robot-2:hover .betButton { opacity: 1 }
 
-.btn {
+.btn-custom {
   display: inline-block;
   transition: 0.3s all ease-in-out;
   outline: 0;
@@ -90,31 +88,31 @@ body {
   color: #F44336;
   margin-top: 18px;
 }
-.btn:nth-of-type(2) {
+.btn-custom:nth-of-type(2) {
   color: #1DE9B6;
   border-color: #1DE9B6;
 }
-.btn:nth-of-type(3) {
+.btn-custom:nth-of-type(3) {
   color: #FBC02D;
   border-color: #FBC02D;
 }
-.btn:nth-of-type(4) {
+.btn-custom:nth-of-type(4) {
   color: #7C4DFF;
   border-color: #7C4DFF;
 }
-.btn:hover {
+.btn-custom:hover {
   background: #F44336;
   color: black;
 }
-.btn:hover:nth-of-type(2) {
+.btn-custom:hover:nth-of-type(2) {
   background: #1DE9B6;
   color: black;
 }
-.btn:hover:nth-of-type(3) {
+.btn-custom:hover:nth-of-type(3) {
   background: #FBC02D;
   color: black;
 }
-.btn:hover:nth-of-type(4) {
+.btn-custom:hover:nth-of-type(4) {
   background: #7C4DFF;
   color: black;
 }
