@@ -68,18 +68,20 @@ body {
 }
 
 
-.robot-1-img:hover {
-  transform: scale(1.2);
-}
+.robot-1-img:hover { transform: scale(1.2); }
+.robot-2-img:hover { transform: scale(1.2); }
 
-.robot-2-img:hover {
-  transform: scale(1.2);
-}
-.slowButton { opacity: 0; }
+.robot-1-button-holder > .slowButton { opacity: 0; }
+.robot-1:hover .slowButton { opacity: 1; }
+
+.robot-1-button-holder > .betButton { opacity: 0; }
+.robot-1:hover .betButton { opacity: 1 }
+
 /* .robot-2:hover { background-color: #333} */
+.robot-2-button-holder > .slowButton { opacity: 0; }
 .robot-2:hover .slowButton { opacity: 1; }
 
-.betButton { opacity: 0; }
+.robot-2-button-holder > .betButton { opacity: 0; }
 .robot-2:hover .betButton { opacity: 1 }
 
 .btn {
