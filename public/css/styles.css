@@ -43,7 +43,7 @@ body {
   display:flex;
   align-items: stretch;
   justify-content: space-between;
-  width: 80%;
+  /* width: 80%; */
 }
 
 * {
@@ -59,8 +59,8 @@ body {
   filter: drop-shadow(5px 5px 0 white)
           drop-shadow(-5px -5px 0 white);
 }
-.robot-1-button-holder {padding-top: 15%;}
-.robot-2-button-holder {padding-top: 15%;}
+.robot-1-button-holder {padding-top: 10%;}
+.robot-2-button-holder {padding-top: 10%;}
 
 .robot-1-img:hover { transform: scale(1.2); }
 .robot-2-img:hover { transform: scale(1.2); }

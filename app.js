@@ -60,13 +60,17 @@ app.set('view engine', 'hbs');
 
 app.get('/', function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  totalBetsArray = ['50', '30']
   response = '';
   res.render('index.hbs', {
-    'response': response
+    'response': response,
+    'totalBetsA': totalBetsArray[0],
+    'totalBetsB': totalBetsArray[1]
   });
 });
 
 app.get('/robots', webThree.robots);
+app.get('/getaccount', webThree.getAccount);
 
 app.get('/api/etherscan/balance', etherscan.getEtherBalance);
 app.get('/api/etherscan/transactions/normal', etherscan.getNormalTransactions);

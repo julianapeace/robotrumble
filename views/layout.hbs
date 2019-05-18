@@ -14,15 +14,37 @@
 <header class="masthead">
 {{{body}}}
 </header>
+<script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 <!-- Login -->
-<script src="https://tor.us/embed.min.js" integrity="sha384-Pe6iaNgo0jyq01Bpx8V55nN+VsdhAvOHj1BAYfio/oerWgOt0q22oBwoEfdw4G+D" crossorigin="anonymous"></script>
+<script src="https://app.tor.us/embed.min.js" integrity="sha256-hq29/zh1T7jaH41IlICtfLI0pvHAdjXW4OZ2P3agMSM=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-- <script src="js/libs/jquery.js"></script> -->
+
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
   var clock;
+  const Http = new XMLHttpRequest();
+
+  function emitStart() {
+    const url='/robots'; // TODO: emits ACF.methods.startGame() event
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      console.log(Http.responseText)
+    }
+  }
+
+  function sendAddress(address) {
+    const url='/getaccount'; // TODO: emits ACF.methods.startGame() event
+    var params="address="+address
+    Http.open("GET", url+"?"+params, true);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      console.log(Http.responseText)
+    }
+  }
 
   $(document).ready(function() {
     var clock;
@@ -33,11 +55,13 @@
           callbacks: {
             stop: function() {
               $('.clock').html('<h1>Let the racing begin!</h1>')
+              emitStart()
+              sendAddress(web3.eth.accounts[0])
             }
           }
       });
 
-      clock.setTime(86400);
+      clock.setTime(0002);
       clock.setCountdown(true);
       clock.start();
   });
@@ -50,6 +74,84 @@
       x.style.display = "none";
     }
 }
+</script>
+<script type="text/javascript" type="text/javascript">
+  // Connecting to ROS
+  // -----------------
+
+  var left  = 37
+  var up    = 38
+  var right = 39
+  var down  = 40
+  var ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+  });
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+  // Publishing a Topic
+  // ------------------
+
+  var cmdVel = new ROSLIB.Topic({
+    ros : ros,
+    name : '/cmd_vel',
+    messageType : 'geometry_msgs/Twist'
+  });
+
+  var twist = new ROSLIB.Message({
+    linear : {
+      x : 0.1,
+      y : 0.2,
+      z : 0.3
+    },
+    angular : {
+      x : -0.1,
+      y : -0.2,
+      z : -0.3
+    }
+  });
+  cmdVel.publish(twist);
+
+  // Subscribing to a Topic
+  // ----------------------
+
+  var listener = new ROSLIB.Topic({
+    ros : ros,
+    name : '/listener',
+    messageType : 'std_msgs/String'
+  });
+
+  listener.subscribe(function(message) {
+    console.log('Received message on ' + listener.name + ': ' + message.data);
+    listener.unsubscribe();
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+  document.addEventListener('keydown', event => {
+      const charList = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      const key = event.key.toLowerCase();
+      console.log(key);
+      // we are only interested in alphanumeric keys
+      // if (charList.indexOf(key) === -1) return;
+      // console.log(key);
+      if(key === 'arrowup') {
+        console.log('Command sent')
+        cmdVel.publish(twist);
+      } else {
+        console.log('No command sent')
+      }
+  });
+});
 </script>
 </body>
 </html>
