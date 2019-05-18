@@ -1,0 +1,192 @@
+:root {
+  --button-color: #333;
+  --text-color: #fff;
+}
+
+/* Background */
+header.masthead {
+  position: relative;
+  height: 100vh;
+  color: white;
+  background: url("../img/bg-pattern.png"), #7b4397;
+  background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: url("../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
+}
+
+/* Content */
+.container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top:2rem;
+  text-align:center;
+}
+
+body {
+	background-color: #ffffff;
+	color: #686868;
+	font-family:'Montserrat',sans-serif;
+	font-size:13px;
+}
+
+.clock {
+  /* border: 1px solid white; */
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robot-holder{
+  /* border: 1px solid white; */
+  display:flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 80%;
+}
+
+* {
+  box-sizing:border-box;
+  font-family:'Montserrat';
+}
+
+.robot-2-button-holder {
+  /* border: 1px solid white; */
+  display: flex;
+  padding: 15%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.robot-img {
+  /* animation: 1s ease-out 0s infinite vibrate; */
+  -webkit-filter: drop-shadow(5px 5px 0 white)
+                  drop-shadow(-5px -5px 0 white);
+  filter: drop-shadow(5px 5px 0 white)
+          drop-shadow(-5px -5px 0 white);
+}
+
+
+.robot-1-img:hover {
+  transform: scale(1.2);
+}
+
+.robot-2-img:hover {
+  transform: scale(1.2);
+}
+.slowButton { opacity: 0; }
+/* .robot-2:hover { background-color: #333} */
+.robot-2:hover .slowButton { opacity: 1; }
+
+.betButton { opacity: 0; }
+.robot-2:hover .betButton { opacity: 1 }
+
+.btn {
+  display: inline-block;
+  transition: 0.3s all ease-in-out;
+  outline: 0;
+  cursor: pointer;
+  padding: 18px 70px;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  font-size: 20px;
+  border: 2px solid #F44336;
+  color: #F44336;
+  margin-top: 18px;
+}
+.btn:nth-of-type(2) {
+  color: #1DE9B6;
+  border-color: #1DE9B6;
+}
+.btn:nth-of-type(3) {
+  color: #FBC02D;
+  border-color: #FBC02D;
+}
+.btn:nth-of-type(4) {
+  color: #7C4DFF;
+  border-color: #7C4DFF;
+}
+.btn:hover {
+  background: #F44336;
+  color: black;
+}
+.btn:hover:nth-of-type(2) {
+  background: #1DE9B6;
+  color: black;
+}
+.btn:hover:nth-of-type(3) {
+  background: #FBC02D;
+  color: black;
+}
+.btn:hover:nth-of-type(4) {
+  background: #7C4DFF;
+  color: black;
+}
+
+.scaled {
+  -webkit-transform: scale3d(0, 0, 0);
+          transform: scale3d(0, 0, 0);
+}
+
+
+@-webkit-keyframes vibrate {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(1px, -1px);
+            transform: translate(1px, -1px);
+  }
+  40% {
+    -webkit-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+  }
+  60% {
+    -webkit-transform: translate(-1px, 1px);
+            transform: translate(-1px, 1px);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px);
+            transform: translate(-1px, -1px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes vibrate-2 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(1px, -1px);
+            transform: translate(1px, -1px);
+  }
+  40% {
+    -webkit-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+  }
+  60% {
+    -webkit-transform: translate(-1px, 1px);
+            transform: translate(-1px, 1px);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px);
+            transform: translate(-1px, -1px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+/* h1 {font-size:3em;line-height:2em;} */
+
+/* h2 {font-size:1.8em;line-height:2em;} */
+
+/* h3 {font-size:1.5em;line-height:2em;} */
+
+/* p {font-size:14px;line-height:22px; color: #686868;} */
