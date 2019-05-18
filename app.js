@@ -18,16 +18,10 @@ var app = express()
 var Web3 = require('web3');
 const body_parser = require('body-parser');
 const port = process.env.PORT || 8000;
-var multer  = require('multer')
-var upload = multer({ dest: 'upload-files/' })
-var logger = require('morgan');
-var firebase = require('firebase')
 var webThree = require('./webThree');
-var etherscan = require('./etherscan');
 require('dotenv').config();
 app.use(cors());
 
-app.use(logger('dev'));
 if (app.get('env') === 'development') {
   environment = {
     environment: 'development'
@@ -69,12 +63,8 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/robots', webThree.robots);
+app.get('/robots', webThree.robots); //gameIntervals()
 app.get('/getaccount', webThree.getAccount);
-
-app.get('/api/etherscan/balance', etherscan.getEtherBalance);
-app.get('/api/etherscan/transactions/normal', etherscan.getNormalTransactions);
-app.get('/api/etherscan/transactions/internal', etherscan.getInternalTransactions);
 
 app.listen(port, function () {
   console.log('listening on port ' + port)
