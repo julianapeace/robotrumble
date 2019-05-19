@@ -30,8 +30,6 @@ var config = {
       messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID
     }
 
-console.log("TEST" + JSON.stringify(config))
-
 firebase.initializeApp(config);
 const rootRef = firebase.database().ref();
 var webThree = require('./webThree');

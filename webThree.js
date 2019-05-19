@@ -1,359 +1,379 @@
 var Web3 = require('web3');
 web3 = new Web3('https://testnet-rpc.thundercore.com:8544');
-let address = '0xfa5b6432308d45b54a1ce1373513fab77166436f'
+let address = '0x7cb50610e7e107b09acf3fbb8724c6df3f3e1c1d'
 let ABI = [
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "g",
-        "type": "uint256"
-      }
-    ],
-    "name": "getBetChoice",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      },
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "a",
-        "type": "address"
-      }
-    ],
-    "name": "setRobotAddress",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "r",
-        "type": "uint256"
-      },
-      {
-        "name": "direction",
-        "type": "uint256"
-      }
-    ],
-    "name": "moveRobot",
-    "outputs": [],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "g",
-        "type": "uint256"
-      }
-    ],
-    "name": "returnBetData",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "winningRobot",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "currentGame",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "lastMoveTime",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "n",
-        "type": "uint256"
-      }
-    ],
-    "name": "setGameInterval",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "isRobot",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "b",
-        "type": "bool"
-      }
-    ],
-    "name": "BetOnRobot",
-    "outputs": [],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "minimumBet",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "GameInterval",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "g",
-        "type": "uint256"
-      }
-    ],
-    "name": "GetWinnings",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "startGame",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "MovePrice",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "r",
-        "type": "uint256"
-      }
-    ],
-    "name": "EndGame",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "name": "_gameInterval",
-        "type": "uint256"
-      },
-      {
-        "name": "minBet",
-        "type": "uint256"
-      },
-      {
-        "name": "_MovePrice",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "time",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "id",
-        "type": "uint256"
-      }
-    ],
-    "name": "GameStarted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "game",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "time",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "winner",
-        "type": "uint256"
-      }
-    ],
-    "name": "GameEnded",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "robot",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "direction",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "mover",
-        "type": "address"
-      }
-    ],
-    "name": "RobotMoved",
-    "type": "event"
-  }
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "b",
+				"type": "bool"
+			}
+		],
+		"name": "BetOnRobot",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "r",
+				"type": "uint256"
+			}
+		],
+		"name": "EndGame",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "g",
+				"type": "uint256"
+			}
+		],
+		"name": "GetWinnings",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "Initialize",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "r",
+				"type": "uint256"
+			},
+			{
+				"name": "direction",
+				"type": "uint256"
+			},
+			{
+				"name": "speed",
+				"type": "uint256"
+			}
+		],
+		"name": "moveRobot",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "n",
+				"type": "uint256"
+			}
+		],
+		"name": "setGameInterval",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "a",
+				"type": "address"
+			}
+		],
+		"name": "setRobotAddress",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "startGame",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_gameInterval",
+				"type": "uint256"
+			},
+			{
+				"name": "minBet",
+				"type": "uint256"
+			},
+			{
+				"name": "_MovePrice",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "GameStarted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "game",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "winner",
+				"type": "uint256"
+			}
+		],
+		"name": "GameEnded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "robot",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "direction",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "speed",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "mover",
+				"type": "address"
+			}
+		],
+		"name": "RobotMoved",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "currentGame",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "GameInterval",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "g",
+				"type": "uint256"
+			}
+		],
+		"name": "getBetChoice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "isRobot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "lastMoveTime",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "minimumBet",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "MovePrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "g",
+				"type": "uint256"
+			}
+		],
+		"name": "returnBetData",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "winningRobot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
 ]
+
 let ACF = new web3.eth.Contract(ABI, address) //instantiating
 
 function robots(req, res, next) {
-  ACF.methods.GameInterval().call()
-    .then(response => {
-      console.log('jm contract response:', response);
-      res.send(response)
-    })
-    .catch(err => {
-      console.log('uh oh', err);
-      res.send(err)
-    })
+  console.log(ACF.methods);
+  // ACF.methods.GameInterval().call()
+  //   .then(response => {
+  //     console.log('jm contract response:', response);
+  //     res.send(response)
+  //   })
+  //   .catch(err => {
+  //     console.log('uh oh', err);
+  //     res.send(err)
+  //   })
 }
 
 function getAccount(req, res, next) {
