@@ -239,9 +239,10 @@
     var snap = snapshot.val()
     console.log('SNAPSHOT: ' + JSON.stringify(snap))
     if(snap.availableSeats == 1) {
+      $('#message-update').empty()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     } else {
-      $('#message-update').remove()
+      $('#message-update').empty()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     }
   });
