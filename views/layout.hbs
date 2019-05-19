@@ -233,7 +233,8 @@
   console.log(firebase);
   // Get a reference to the database service
   var database = firebase.database();
-  var robot1State = firebase.database().ref('robots/robot1')
+  var robot1Control = firebase.database().ref('controls/robot1')
+  {{!-- var robot1State = firebase.database().ref('robots/robot1')
   var robot2State = firebase.database().ref('robots/robot2')
 
   robot1State.on('value', function(snapshot) {
@@ -266,7 +267,48 @@
       $('#message-update').empty()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     }
-  });
+  }); --}}
+
+  // robotId: {1, 2}
+  // command: {l, f, re, r} //left, forward, reload, right
+  function moveRobot(robotId, command) {
+    console.log('ROBOTID: ' + robotId + ' COMMAND: ' + command)
+    console.log('ID TYPEOF: ' + typeof robotId)
+    switch(command) {
+      case 'l':
+        console.log('LEFT l')
+        if(robotId == 1) {
+          robot1Control.update({value: 'l'})
+        } else {
+          robot1Control.update({value: 'l'})
+        }
+        break
+      case 'u':
+        console.log('UP u')
+        if(robotId == 1) {
+          robot1Control.update({value: 'u'})
+        } else {
+          robot1Control.update({value: 'u'})
+        }
+        break
+      case 'r':
+        console.log('RIGHT r')
+        if(robotId == 1) {
+          robot1Control.update({value: 'r'})
+        } else {
+          robot1Control.update({value: 'r'})
+        }
+        break
+      case 're':
+       console.log('RELOAD re')
+        if(robotId == 1) {
+          robot1Control.update({value: 'r'})
+        } else {
+          robot1Control.update({value: 'r'})
+        }
+        break
+    }
+  }
 
 </script>
 
@@ -301,6 +343,7 @@
 
   }
 </script>
+
 
 </body>
 </html>
