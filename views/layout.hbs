@@ -23,6 +23,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
   var clock;
@@ -214,14 +218,30 @@
 </script>
 
 <script>
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyCROZYabBmr8eZlcbkRPmTvJcv8j2ZTlLE",
+    authDomain: "robotrumble-dcb1c.firebaseapp.com",
+    databaseURL: "https://robotrumble-dcb1c.firebaseio.com",
+    projectId: "robotrumble-dcb1c",
+    storageBucket: "robotrumble-dcb1c.appspot.com",
+    messagingSenderId: "214277502253",
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  console.log(firebase);
   // Get a reference to the database service
   var database = firebase.database();
   var robotState = firebase.database().ref('robots/robot1')
   robotState.on('value', function(snapshot) {
     
     var snap = snapshot.val()
-    console.log('SNAPSHOT: ' + snap)
-    if(snap.availableSeats = 1) {
+    console.log('SNAPSHOT: ' + JSON.stringify(snap))
+    if(snap.availableSeats == 1) {
+      $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
+    } else {
+      $('#message-update').remove()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     }
   });
