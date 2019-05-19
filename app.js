@@ -30,8 +30,6 @@ var config = {
       messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID
     }
 
-console.log("TEST" + JSON.stringify(config))
-
 firebase.initializeApp(config);
 const rootRef = firebase.database().ref();
 var webThree = require('./webThree');
@@ -69,23 +67,22 @@ app.set('view engine', 'hbs');
 
 app.get('/', function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  totalBetsArray = ['50', '30']
   response = '';
   res.render('index.hbs', {
-    'response': response,
-    'totalBetsA': totalBetsArray[0],
-    'totalBetsB': totalBetsArray[1]
+    'response': response
   });
 });
 
-app.get('/robots', webThree.robots); //gameIntervals()
-app.get('/getaccount', webThree.getAccount);
+app.get('/getGameInterval', webThree.GameInterval);
+app.get('/betOnRobot', webThree.betOnRobot);
+app.get('/moveRobot', webThree.moveRobot)
+app.get('/GetWinnings', webThree.GetWinnings)
+app.get('/startGame', webThree.startGame)
+app.get('/endGame', webThree.endGame)
+
 app.get('/writeToDb', function (req, res) {
-  var fbData = {
-    speed: "10"
-  }
-  rootRef.child('robots').child('robot1').set(fbData)
-} )
+  rootRef.child('robots').child('robot1/bidPoolApplicants').set({'0xmadeupaddress': 2})
+})
 
 app.listen(port, function () {
   console.log('listening on port ' + port)

@@ -5,7 +5,7 @@
 
 /* Background */
 header.masthead {
-  position: relative;
+  position: absolute;
   height: 100vh;
   /* color: white; */
   background: url("../img/bg-pattern.png"), #7b4397;
