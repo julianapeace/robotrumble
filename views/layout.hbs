@@ -167,40 +167,6 @@
   var robot1State = firebase.database().ref('robots/robot1')
   var robot2State = firebase.database().ref('robots/robot2')
 
-  var robot1Interactions = firebase.database().ref('robot1/interactions')
-  var robot2Interactions = firebase.database().ref('robot2/interactions')
-
-  $( "#driver-2-arrow-forward").click(function() {
-    robot2Interactions.transaction(function(interactions){
-      return (interactions || 0) + 1;
-    })
-    payRobot()
-  });
-
-  $( "#driver-2-arrow-right").click(function() {
-    payRobot()
-  });
-  $( "#driver-2-arrow-left").click(function() {
-    payRobot()
-  });
-  $( "#driver-2-arrow-reload").click(function() {
-    payRobot()
-  });
-  $( "#driver-1-arrow-forward").click(function() {
-    payRobot()
-  });
-
-  $( "#driver-1-arrow-right").click(function() {
-    payRobot()
-  });
-  $( "#driver-1-arrow-left").click(function() {
-    payRobot()
-  });
-
-  $( "#driver-1-arrow-reload").click(function() {
-    payRobot()
-  });
-
   robot1State.on('value', function(snapshot) {
 
     var snap = snapshot.val()
@@ -235,6 +201,39 @@
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     }
 
+  });
+
+  var robot1Interactions = robot1State.database().ref('/interactions')
+  var robot2Interactions = robot2State.database().ref('/interactions')
+
+  $( "#driver-2-arrow-forward").click(function() {
+    robot2Interactions.transaction(function(interactions){
+      return (interactions || 0) + 1;
+    })
+    payRobot()
+  });
+  $( "#driver-2-arrow-right").click(function() {
+    payRobot()
+  });
+  $( "#driver-2-arrow-left").click(function() {
+    payRobot()
+  });
+  $( "#driver-2-arrow-reload").click(function() {
+    payRobot()
+  });
+  $( "#driver-1-arrow-forward").click(function() {
+    payRobot()
+  });
+
+  $( "#driver-1-arrow-right").click(function() {
+    payRobot()
+  });
+  $( "#driver-1-arrow-left").click(function() {
+    payRobot()
+  });
+
+  $( "#driver-1-arrow-reload").click(function() {
+    payRobot()
   });
 
   // robotId: {1, 2}
