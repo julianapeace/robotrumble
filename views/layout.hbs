@@ -27,6 +27,13 @@
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 <script src="js/flipclock.min.js"></script>
+<script src="js/robotcontract.js"></script>
+
+<script>
+  function loginWithPortis() {
+    portis.showPortis();
+  }
+</script>
 <script type="text/javascript">
   var clock;
   const Http = new XMLHttpRequest();
@@ -133,6 +140,7 @@
 
   $('#driver2-purchase-btn').on('click', function() {
 		alert('Purchasing Driver 2.\nSHOULD OPEN PORTIS PAYMENT.')
+
     $('#driver2-purchase-btn').css({display: "none"})
     $('#robot-2-button-holder').css({display: "block"})
 	});
@@ -155,6 +163,9 @@
   // Get a reference to the database service
   var database = firebase.database();
   var robot1Control = firebase.database().ref('controls/robot1')
+  var robot2Control = firebase.database().ref('controls/robot2')
+
+
   var robot1State = firebase.database().ref('robots/robot1')
   var robot2State = firebase.database().ref('robots/robot2')
 
@@ -204,8 +215,9 @@
         console.log('LEFT l')
         if(robotId == 1) {
           robot1Control.update({value: 'l'})
+
         } else {
-          robot1Control.update({value: 'l'})
+          robot2Control.update({value: 'l'})
         }
         break
       case 'u':
@@ -213,7 +225,7 @@
         if(robotId == 1) {
           robot1Control.update({value: 'u'})
         } else {
-          robot1Control.update({value: 'u'})
+          robot2Control.update({value: 'u'})
         }
         break
       case 'r':
@@ -221,15 +233,15 @@
         if(robotId == 1) {
           robot1Control.update({value: 'r'})
         } else {
-          robot1Control.update({value: 'r'})
+          robot2Control.update({value: 'r'})
         }
         break
       case 're':
        console.log('RELOAD re')
         if(robotId == 1) {
-          robot1Control.update({value: 'r'})
+          robot1Control.update({value: 're'})
         } else {
-          robot1Control.update({value: 'r'})
+          robot2Control.update({value: 're'})
         }
         break
     }
@@ -237,6 +249,34 @@
 </script>
 
 <script>
+
+$( "#driver-2-arrow-forward").click(function() {
+  moveRobot()
+});
+$( "#driver-2-arrow-right").click(function() {
+  moveRobot()
+});
+$( "#driver-2-arrow-left").click(function() {
+  moveRobot()
+});
+
+$( "#driver-2-arrow-reload").click(function() {
+  moveRobot()
+});
+$( "#driver-1-arrow-forward").click(function() {
+  moveRobot()
+});
+
+$( "#driver-1-arrow-right").click(function() {
+  moveRobot()
+});
+$( "#driver-1-arrow-left").click(function() {
+  moveRobot()
+});
+
+$( "#driver-1-arrow-reload").click(function() {
+  moveRobot()
+});
   function changeImage(driverId) {
     var imgId = ''
     if(driverId === '1') {
@@ -265,13 +305,6 @@
       $('#driver-2-img').attr('src','/img/' + newImg);
     }
 
-  }
-</script>
-<script src="js/robotcontract.js"></script>
-
-<script>
-  function loginWithPortis() {
-    portis.showPortis();
   }
 </script>
 
