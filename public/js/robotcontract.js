@@ -1,4 +1,4 @@
-var Web3 = require('web3');
+import Web3 from 'web3'
 var web3 = new Web3('https://mainnet-rpc.thundercore.com'); //https://testnet-rpc.thundercore.com:8544
 let address = '0x9601422a49f4906c6b2e792af2c76900e546adca' //0x7cb50610e7e107b09acf3fbb8724c6df3f3e1c1d
 let ABI = [
@@ -362,7 +362,8 @@ let ABI = [
 ]
 let RobotContract = new web3.eth.Contract(ABI, address)
 
-function GameInterval(req, res, next) {
+function GameInterval() {
+  console.log('HELLL YEHAHHHAHH');
   RobotContract.methods.GameInterval().call()
     .then(response => {
       res.send(response)
@@ -372,7 +373,7 @@ function GameInterval(req, res, next) {
     })
 }
 
-function betOnRobot(req, res, next) {
+function betOnRobot(req, res) {
   // true = robot1
   // false = robot2
   // e.g. BetOnRobot(true)
@@ -385,7 +386,7 @@ function betOnRobot(req, res, next) {
     })
 }
 
-function startGame(req, res, next) {
+function startGame(req, res) {
   // must be sent from authorized acct.
   RobotContract.methods.startGame().send()
   .then(response => {
@@ -396,7 +397,7 @@ function startGame(req, res, next) {
   })
 }
 
-function endGame(req, res, next) {
+function endGame(req, res) {
   // int for robot id.
   // endGame(1)
   RobotContract.methods.endGame().send()
@@ -408,7 +409,7 @@ function endGame(req, res, next) {
   })
 }
 
-function GetWinnings(req, res, next) {
+function GetWinnings(req, res) {
   // needs a gameId
   // GetWinnings(gameId)
   RobotContract.methods.GetWinnings().send()
@@ -420,7 +421,7 @@ function GetWinnings(req, res, next) {
   })
 }
 
-function moveRobot() {
+function moveRobot(req, res) {
   // robotid, direction, speed
   // message.value
   // moveRobot(1, 3, 10)
