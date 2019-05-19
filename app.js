@@ -75,6 +75,10 @@ app.get('/', function (req, res) {
 
 app.get('/getGameInterval', webThree.GameInterval);
 app.get('/betOnRobot', webThree.betOnRobot);
+app.get('/moveRobot', webThree.moveRobot)
+app.get('/GetWinnings', webThree.GetWinnings)
+app.get('/startGame', webThree.startGame)
+app.get('/endGame', webThree.endGame)
 
 app.get('/writeToDb', function (req, res) {
   rootRef.child('robots').child('robot1/bidPoolApplicants').set({'0xmadeupaddress': 2})

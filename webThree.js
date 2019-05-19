@@ -524,5 +524,9 @@ module.exports = {
   sendToContract: sendToContract,
   getAccount: getAccount,
   betOnRobot: betOnRobot,
-  GameInterval: GameInterval
+  GameInterval: GameInterval,
+  startGame: startGame,
+  endGame: endGame,
+  GetWinnings: GetWinnings,
+  moveRobot: moveRobot
 }
