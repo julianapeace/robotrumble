@@ -1,6 +1,7 @@
 var Web3 = require('web3');
-web3 = new Web3('https://testnet-rpc.thundercore.com:8544');
-let address = '0x7cb50610e7e107b09acf3fbb8724c6df3f3e1c1d'
+web3 = new Web3('https://mainnet-rpc.thundercore.com'); //https://testnet-rpc.thundercore.com:8544
+let address = '0x9601422a49f4906c6b2e792af2c76900e546adca' //0x7cb50610e7e107b09acf3fbb8724c6df3f3e1c1d
+
 let ABI = [
 	{
 		"constant": false,

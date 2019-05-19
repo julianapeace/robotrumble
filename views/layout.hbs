@@ -346,7 +346,12 @@
 </script>
 
 <script>
-  const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
+  const thundercore = {
+    nodeUrl: 'https://mainnet-rpc.thundercore.com',
+    chainId: 1,
+    nodeProtocol: 'rpc',
+  };
+  const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', thundercore);
   const web3 = new Web3(portis.provider);
 </script>
 
