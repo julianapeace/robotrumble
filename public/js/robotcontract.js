@@ -371,10 +371,9 @@ let ABI = [
 // var RobotContract = web3.eth.contract(ABI).at(address) // web3 0.2v
 var RobotContract = new web3.eth.Contract(ABI, address)
 
-console.log("WHERE ARE THE METHODSSSS ======>", RobotContract.methods);
+// console.log("WHERE ARE THE METHODSSSS ======>", RobotContract.methods);
 
 function GameInterval() {
-  console.log('HELLL YEHAHHHAHH');
 	RobotContract.methods.GameInterval().call()
 	.then(res => {
 		console.log(res);
@@ -432,11 +431,11 @@ function GetWinnings(req, res) {
   })
 }
 
-function moveRobot() {
+function payRobot() {
   // robotid, direction, speed
   // message.value
   // moveRobot(1, 3, 10)
-	console.log('uinthere?' + ' -- ' + robotid + '---' + direction + '---' + speed);
+	// console.log('uinthere?' + ' -- ' + robotid + '---' + direction + '---' + speed);
 	web3.eth.getAccounts()
 	.then(accounts => {
 		RobotContract.methods.moveRobot(1, 0, 20).send({

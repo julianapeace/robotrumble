@@ -147,7 +147,6 @@
 </script>
 
 <script>
-
   var firebaseConfig = {
     apiKey: "AIzaSyCROZYabBmr8eZlcbkRPmTvJcv8j2ZTlLE",
     authDomain: "robotrumble-dcb1c.firebaseapp.com",
@@ -165,9 +164,42 @@
   var robot1Control = firebase.database().ref('controls/robot1')
   var robot2Control = firebase.database().ref('controls/robot2')
 
-
   var robot1State = firebase.database().ref('robots/robot1')
   var robot2State = firebase.database().ref('robots/robot2')
+
+  var robot1Interactions = firebase.database().ref('robot1/interactions')
+  var robot2Interactions = firebase.database().ref('robot2/interactions')
+
+  $( "#driver-2-arrow-forward").click(function() {
+    robot2Interactions.transaction(function(interactions){
+      return (interactions || 0) + 1;
+    })
+    payRobot()
+  });
+
+  $( "#driver-2-arrow-right").click(function() {
+    payRobot()
+  });
+  $( "#driver-2-arrow-left").click(function() {
+    payRobot()
+  });
+  $( "#driver-2-arrow-reload").click(function() {
+    payRobot()
+  });
+  $( "#driver-1-arrow-forward").click(function() {
+    payRobot()
+  });
+
+  $( "#driver-1-arrow-right").click(function() {
+    payRobot()
+  });
+  $( "#driver-1-arrow-left").click(function() {
+    payRobot()
+  });
+
+  $( "#driver-1-arrow-reload").click(function() {
+    payRobot()
+  });
 
   robot1State.on('value', function(snapshot) {
 
@@ -249,34 +281,6 @@
 </script>
 
 <script>
-
-$( "#driver-2-arrow-forward").click(function() {
-  moveRobot()
-});
-$( "#driver-2-arrow-right").click(function() {
-  moveRobot()
-});
-$( "#driver-2-arrow-left").click(function() {
-  moveRobot()
-});
-
-$( "#driver-2-arrow-reload").click(function() {
-  moveRobot()
-});
-$( "#driver-1-arrow-forward").click(function() {
-  moveRobot()
-});
-
-$( "#driver-1-arrow-right").click(function() {
-  moveRobot()
-});
-$( "#driver-1-arrow-left").click(function() {
-  moveRobot()
-});
-
-$( "#driver-1-arrow-reload").click(function() {
-  moveRobot()
-});
   function changeImage(driverId) {
     var imgId = ''
     if(driverId === '1') {

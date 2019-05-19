@@ -16,18 +16,17 @@ var express = require('express')
 var cors = require('cors');
 var app = express()
 var Web3 = require('web3');
-require('dotenv').config();
 
 const body_parser = require('body-parser');
 const port = process.env.PORT || 8181;
 var firebase = require('firebase')
 var config = {
-      apiKey: process.env.FIREBASE_APIKEY,
-      authDomain: process.env.FIREBASE_AUTHDOMAIN,
-      databaseURL: process.env.FIREBASE_DBURL,
-      projectId: process.env.FIREBASE_PROJECTID,
-      storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-      messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID
+      apiKey: "AIzaSyCROZYabBmr8eZlcbkRPmTvJcv8j2ZTlLE",
+      authDomain: "robotrumble-dcb1c.firebaseapp.com",
+      databaseURL: "https://robotrumble-dcb1c.firebaseio.com",
+      projectId: "robotrumble-dcb1c",
+      storageBucket: "robotrumble-dcb1c.appspot.com",
+      messagingSenderId: "214277502253"
     }
 
 firebase.initializeApp(config);
