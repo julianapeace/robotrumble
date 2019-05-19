@@ -15,7 +15,6 @@
 {{{body}}}
 </header>
 <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -24,7 +23,48 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-
+<script>
+window.addEventListener('load', async () => {
+      // Modern dapp browsers...
+      if (window.ethereum) {
+          window.web3 = new Web3(ethereum);
+          try {
+              // Request account access if needed
+              await ethereum.enable();
+              // Acccounts now exposed
+              OnCheckingDone();
+          }
+          catch (error) {
+              OnError("User denied access to Metamask for this app");
+          }
+      }
+      // Legacy dapp browsers...
+      else if (window.web3) {
+          window.web3 = new Web3(web3.currentProvider);
+          // Acccounts always exposed
+          OnCheckingDone();
+      }
+      // Non-dapp browsers...
+      else {
+          OnError('Non-Ethereum browser detected. You should consider trying MetaMask!');
+      }
+  });
+function OnCheckingDone()
+{
+  if(typeof(window.web3.eth.accounts[0]) == 'undefined')
+  {
+    OnError("Please log into Metamask to play on HIPR.");
+  }
+  else
+  {
+          HIPRInternal.init()
+  }
+}
+function OnError(message)
+{
+      // window.location.href = "/";
+}
+</script>
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
   var clock;
@@ -71,84 +111,6 @@
     }
 }
 </script>
-<script type="text/javascript" type="text/javascript">
-  // Connecting to ROS
-  // -----------------
-
-  var left  = 37
-  var up    = 38
-  var right = 39
-  var down  = 40
-  var ros = new ROSLIB.Ros({
-    url : 'ws://localhost:9090'
-  });
-
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
-
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
-
-  // Publishing a Topic
-  // ------------------
-
-  var cmdVel = new ROSLIB.Topic({
-    ros : ros,
-    name : '/cmd_vel',
-    messageType : 'geometry_msgs/Twist'
-  });
-
-  var twist = new ROSLIB.Message({
-    linear : {
-      x : 0.1,
-      y : 0.2,
-      z : 0.3
-    },
-    angular : {
-      x : -0.1,
-      y : -0.2,
-      z : -0.3
-    }
-  });
-  cmdVel.publish(twist);
-
-  // Subscribing to a Topic
-  // ----------------------
-
-  var listener = new ROSLIB.Topic({
-    ros : ros,
-    name : '/listener',
-    messageType : 'std_msgs/String'
-  });
-
-  listener.subscribe(function(message) {
-    console.log('Received message on ' + listener.name + ': ' + message.data);
-    listener.unsubscribe();
-  });
-  document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
-  document.addEventListener('keydown', event => {
-      const charList = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      const key = event.key.toLowerCase();
-      console.log(key);
-      // we are only interested in alphanumeric keys
-      // if (charList.indexOf(key) === -1) return;
-      // console.log(key);
-      if(key === 'arrowup') {
-        console.log('Command sent')
-        cmdVel.publish(twist);
-      } else {
-        console.log('No command sent')
-      }
-  });
-});
-</script>
 <!-- Load the Twitch embed script -->
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
@@ -181,19 +143,9 @@
 
 <script>
   $('#driver1-purchase-btn').on('click', function() {
-
     alert('Purchasing Driver 1.\nSHOULD OPEN PORTIS PAYMENT.')
     $('#driver1-purchase-btn').css({display: "none"})
     $('#robot-1-button-holder').css({display: "block"})
-
-    // portis.onLogin((walletAddress, email) => {
-    //   // you're logged in. TODO: make a payment, callback here.
-    //   // paycontract transactionobject.
-    //   document.getElementById("app").innerHTML = `
-    //   <div> Wallet Address: ${walletAddress} </div>
-    // `;
-    // });
-
 	});
 
   $('#driver2-purchase-btn').on('click', function() {
@@ -202,9 +154,8 @@
     $('#robot-2-button-holder').css({display: "block"})
 	});
 </script>
-
+<!--  Firebase -->
 <script>
-
   var firebaseConfig = {
     apiKey: "AIzaSyCROZYabBmr8eZlcbkRPmTvJcv8j2ZTlLE",
     authDomain: "robotrumble-dcb1c.firebaseapp.com",
@@ -299,7 +250,7 @@
     }
   }
 </script>
-
+<!--  Change Image -->
 <script>
   function changeImage(driverId) {
     var imgId = ''
@@ -332,7 +283,7 @@
   }
 </script>
 
-<script>
+<!-- <script>
   const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
   const web3 = new Web3(portis.provider);
 </script>
@@ -341,50 +292,7 @@
   function loginWithPortis() {
     portis.showPortis();
   }
-</script>
-
-<script>
-window.addEventListener('load', async () => {
-      // Modern dapp browsers...
-      if (window.ethereum) {
-          window.web3 = new Web3(ethereum);
-          try {
-              // Request account access if needed
-              await ethereum.enable();
-              // Acccounts now exposed
-              OnCheckingDone();
-          }
-          catch (error) {
-              OnError("User denied access to Metamask for this app");
-          }
-      }
-      // Legacy dapp browsers...
-      else if (window.web3) {
-          window.web3 = new Web3(web3.currentProvider);
-          // Acccounts always exposed
-          OnCheckingDone();
-      }
-      // Non-dapp browsers...
-      else {
-          OnError('Non-Ethereum browser detected. You should consider trying MetaMask!');
-      }
-  });
-function OnCheckingDone()
-{
-  if(typeof(window.web3.eth.accounts[0]) == 'undefined')
-  {
-    OnError("Please log into Metamask to play on HIPR.");
-  }
-  else
-  {
-          HIPRInternal.init()
-  }
-}
-function OnError(message)
-{
-      // window.location.href = "/";
-}
-</script>
+</script> -->
 
 
 </body>
