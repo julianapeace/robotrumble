@@ -21,7 +21,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script> -->
 
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
@@ -172,7 +172,7 @@
     channel: "robotrumble900"
   });
 </script>
-<script>
+<!-- <script>
   const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
   const web3 = new Web3(portis.provider);
 </script>
@@ -181,7 +181,7 @@
   function loginWithPortis() {
     portis.showPortis();
   }
-</script>
+</script> -->
 
 
 <script type="text/javascript">
@@ -209,7 +209,7 @@
     $('#driver1-purchase-btn').css({display: "none"})
     $('#robot-1-button-holder').css({display: "block"})
 	});
-  
+
   $('#driver2-purchase-btn').on('click', function() {
 		alert('Purchasing Driver 2.\nSHOULD OPEN PORTIS PAYMENT.')
     $('#driver2-purchase-btn').css({display: "none"})
@@ -233,11 +233,32 @@
   console.log(firebase);
   // Get a reference to the database service
   var database = firebase.database();
-  var robotState = firebase.database().ref('robots/robot1')
-  robotState.on('value', function(snapshot) {
-    
+  var robot1State = firebase.database().ref('robots/robot1')
+  var robot2State = firebase.database().ref('robots/robot2')
+
+  robot1State.on('value', function(snapshot) {
+
     var snap = snapshot.val()
     console.log('SNAPSHOT: ' + JSON.stringify(snap))
+    if (snap.interactions){
+      $('#robot-1-interactions').html(snap.interactions)
+    }
+    if(snap.availableSeats == 1) {
+      $('#message-update').empty()
+      $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
+    } else {
+      $('#message-update').empty()
+      $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
+    }
+  });
+
+  robot2State.on('value', function(snapshot) {
+
+    var snap = snapshot.val()
+    console.log('SNAPSHOT: ' + JSON.stringify(snap))
+    if (snap.interactions){
+      $('#robot-2-interactions').html(snap.interactions)
+    }
     if(snap.availableSeats == 1) {
       $('#message-update').empty()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
@@ -277,7 +298,7 @@
     } else {
       $('#driver-2-img').attr('src','/img/' + newImg);
     }
-  
+
   }
 </script>
 

@@ -12,8 +12,7 @@
     <div class="row">
       <div class="col text-center">
         <div class="robot-1">
-          <!-- <img class="robot-img robot-1-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <p class="white-text">{{totalBetsA}} Interactions </p>
+          <p class="white-text"><span id="robot-1-interactions"></span> Interactions </p>
           <img id="driver-1-img" class="robot-img robot-1-img vibrate" onclick="changeImage('1');" style="width: 100%; max-width: 25em;" src="/img/2.gif" alt="justinsun">
           <div id="robot-1-button-holder" class="robot-1-button-holder" style="display: none">
             <a href="#" class="btn-custom slowButton">Slow</a>
@@ -46,8 +45,7 @@
       </div>
       <div class="col text-center">
         <div class="robot-2">
-          <!-- <img class="robot-img robot-2-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <p>{{totalBetsB}} Interactions</p>
+          <p class="white-text"><span id="robot-2-interactions"></span> Interactions </p>
           <img id="driver-2-img" class="robot-img robot-2-img vibrate" onclick="changeImage('2');" style="width: 100%; max-width: 25em;" src="/img/1.gif" alt="vitalik">
           <div class="robot-2-button-holder" style="display: none">
             <a href="#" class="btn-custom slowButton">Slow</a>
@@ -73,70 +71,7 @@
         </div>
       </div>
     </div>
-    {{!-- <div id="message-update" class="message"></div> --}}
-    <div class="row">
-      {{!-- <div class="col text-center">
-        <div class="robot-1">
-          <!-- <img class="robot-img robot-1-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <p>{{totalBetsA}} Interactions </p>
-          <img id="driver-1-img" class="robot-img robot-1-img vibrate" onclick="changeImage('1');" style="width: 100%; max-width: 25em;" src="/img/2.gif" alt="justinsun">
-          <div id="robot-1-button-holder" class="robot-1-button-holder" style="display: none">
-            <a href="#" class="btn-custom slowButton">Slow</a>
-            <a href="#" class="btn-custom betButton">Fast</a>
-          </div>
-          <div>
-            </br>
-            <button id="driver1-purchase-btn" type="button" class="btn btn-primary btn-lg">Recruit Driver</button>
-          </div>
-        </div> --}}
-      </div>
-      <!-- Add a placeholder for the Twitch embed -->
-      {{!-- <div class="col text-center">
-        <div id="twitch-embed"></div>
-        <div id="message-update" class="message"></div>
-      </div> --}}
-
-      {{!-- <div class="col text-center">
-        <div class="robot-2">
-          <!-- <img class="robot-img robot-2-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <p>{{totalBetsB}} Interactions</p>
-          <img id="driver-2-img" class="robot-img robot-2-img vibrate" onclick="changeImage('2');" style="width: 100%; max-width: 25em;" src="/img/1.gif" alt="vitalik">
-          <div class="robot-2-button-holder" style="display: none">
-            <a href="#" class="btn-custom slowButton">Slow</a>
-            <a href="#" class="btn-custom betButton">Fast</a>
-          </div>
-           <div>
-            </br>
-            <button id="driver2-purchase-btn" type="button" class="btn btn-primary btn-lg">Recruit Driver</button>
-          </div>
-        </div>
-      </div> --}}
     </div>
-    <div class="row robot-holder">
-      {{!-- <div class="col text-center">
-        <div class="robot-1">
-          <!-- <img class="robot-img robot-1-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <img class="robot-img robot-1-img vibrate" style="width: 100%; max-width: 25em;" src="/img/justinsun_400x400.gif" alt="justinsun">
-          <p>{{totalBetsA}} Interactions </p>
-          <div class="robot-1-button-holder">
-            <a href="#" class="btn-custom slowButton">Slow</a>
-            <a href="#" class="btn-custom betButton">Fast</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="col text-center">
-        <div class="robot-2">
-          <!-- <img class="robot-img robot-2-img vibrate" src="https://cdn-images-1.medium.com/max/306/1*Ajditq7CoiSbj9-2OPAO8w@2x.png" alt="Metamask"> -->
-          <img class="robot-img robot-2-img vibrate" style="width: 100%; max-width: 25em;" src="/img/vitalik.gif" alt="vitalik">
-          <p>{{totalBetsB}} Interactions</p>
-          <div class="robot-2-button-holder">
-            <a href="#" class="btn-custom slowButton">Slow</a>
-            <a href="#" class="btn-custom betButton">Fast</a>
-          </div>
-        </div>
-      </div> --}}
-    </div>
-    <!-- <h2>Bots</h2> -->
     <p>{{response}}</p>
   </div>
