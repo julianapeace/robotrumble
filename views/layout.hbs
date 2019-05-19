@@ -17,10 +17,11 @@
 <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 <!-- Login -->
-<script src="https://app.tor.us/embed.min.js" integrity="sha256-hq29/zh1T7jaH41IlICtfLI0pvHAdjXW4OZ2P3agMSM=" crossorigin="anonymous"></script>
+{{!-- <script src="https://app.tor.us/embed.min.js" integrity="sha256-hq29/zh1T7jaH41IlICtfLI0pvHAdjXW4OZ2P3agMSM=" crossorigin="anonymous"></script> --}}
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script>
 
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
@@ -164,5 +165,16 @@
     channel: "robotrumble900"
   });
 </script>
+<script>
+  const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
+  const web3 = new Web3(portis.provider);
+</script>
+
+<script>
+  function loginWithPortis() {
+    portis.showPortis();
+  }
+</script>
+
 </body>
 </html>
