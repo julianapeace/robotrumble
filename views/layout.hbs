@@ -249,5 +249,37 @@
 
 </script>
 
+<script>
+  function changeImage(driverId) {
+    var imgId = ''
+    if(driverId === '1') {
+      imgId = $('#driver-1-img').attr('src');
+    } else {
+      imgId = $('#driver-2-img').attr('src');
+    }
+    {{!-- console.log('IMGSRC:: ' + imgId) --}}
+    var n = imgId.indexOf('.');
+    imgId = imgId.substring(0, n != -1 ? n : imgId.length);
+    {{!-- console.log('IMGID PARSED: ' + imgId.substring(imgId.length -1, imgId.length)) --}}
+    var integer = parseInt(imgId.substring(imgId.length -1, imgId.length), 10);
+    {{!-- console.log('GIF INT:: ' + integer) --}}
+    var newImg = ''
+    if(integer === 5) {
+      newImg = '1.gif'
+    } else {
+      integer = integer + 1
+      newImg = integer + '.gif'
+      {{!-- console.log('NEWIMG:: ' + newImg) --}}
+    }
+
+    if(driverId === '1') {
+      $('#driver-1-img').attr('src','/img/' + newImg);
+    } else {
+      $('#driver-2-img').attr('src','/img/' + newImg);
+    }
+  
+  }
+</script>
+
 </body>
 </html>
