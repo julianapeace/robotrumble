@@ -81,7 +81,7 @@ app.get('/', function (req, res) {
 app.get('/robots', webThree.robots); //gameIntervals()
 app.get('/getaccount', webThree.getAccount);
 app.get('/writeToDb', function (req, res) {
-  rootRef.child('controls').child('robot1').set({value: 'up'})
+  rootRef.child('robots').child('robot1/bidPoolApplicants').set({'0xmadeupaddress': 2})
 } )
 
 app.listen(port, function () {
