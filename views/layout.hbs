@@ -21,7 +21,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
@@ -69,7 +69,7 @@
           }
       });
 
-      clock.setTime(0040);
+      clock.setTime(0900);
       clock.setCountdown(true);
       clock.start();
   });
@@ -172,7 +172,7 @@
     channel: "robotrumble900"
   });
 </script>
-<!-- <script>
+<script>
   const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
   const web3 = new Web3(portis.provider);
 </script>
@@ -181,7 +181,7 @@
   function loginWithPortis() {
     portis.showPortis();
   }
-</script> -->
+</script>
 
 
 <script type="text/javascript">
@@ -204,6 +204,14 @@
 
 <script>
   $('#driver1-purchase-btn').on('click', function() {
+
+    portis.onLogin((walletAddress, email) => {
+      // you're logged in. TODO: make a payment
+      document.getElementById("app").innerHTML = `
+      <div> Wallet Address: ${walletAddress} </div>
+    `;
+    });
+
 		alert('Purchasing Driver 1.\nSHOULD OPEN PORTIS PAYMENT.')
 
     $('#driver1-purchase-btn').css({display: "none"})
@@ -300,6 +308,32 @@
     }
 
   }
+</script>
+
+<script type="text/javascript">
+    window.addEventListener('load', async () => {
+        if (typeof web3 !== 'undefined') {
+            console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+            window.web3 = new Web3(web3.currentProvider);
+
+            var toAddress = '0xD62835Fe2B40C8411A10E7980a290270e6A23cDA'
+            var ethAmount = .1
+
+            web3.eth.sendTransaction({
+                from: web3.eth.accounts[0],
+                to: toAddress,
+                value: web3.toWei(ethAmount, 'ether')
+            }, function (error, result) {
+                if (error) {
+                    document.getElementById('output').innerHTML = "Something went wrong!"
+                } else {
+                    document.getElementById('output').innerHTML = "Track the payment: <a href='https://etherscan.io/tx/" + result + "'>https://etherscan.io/tx/" + result + "'"
+                }
+            });
+        } else {
+            document.getElementById('output').innerHtml = 'Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>'
+        }
+    })
 </script>
 
 </body>

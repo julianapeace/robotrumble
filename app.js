@@ -81,10 +81,7 @@ app.get('/', function (req, res) {
 app.get('/robots', webThree.robots); //gameIntervals()
 app.get('/getaccount', webThree.getAccount);
 app.get('/writeToDb', function (req, res) {
-  var fbData = {
-    speed: "10"
-  }
-  rootRef.child('robots').child('robot1').set(fbData)
+  rootRef.child('controls').child('robot1').set({value: 'up'})
 } )
 
 app.listen(port, function () {
