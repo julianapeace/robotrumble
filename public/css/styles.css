@@ -1,13 +1,13 @@
 :root {
   --button-color: #333;
-  --text-color: #fff;
+  /* --text-color: #fff; */
 }
 
 /* Background */
 header.masthead {
   position: relative;
   height: 100vh;
-  color: white;
+  /* color: white; */
   background: url("../img/bg-pattern.png"), #7b4397;
   background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
   background: url("../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
@@ -28,6 +28,11 @@ body {
 	color: #686868;
 	font-family:'Montserrat',sans-serif;
 	font-size:13px;
+}
+
+.white-text {
+  text-color: #fff !important;
+  color: white  !important;
 }
 
 .clock {
