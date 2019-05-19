@@ -363,17 +363,77 @@ let ABI = [
 
 let ACF = new web3.eth.Contract(ABI, address) //instantiating
 
-function robots(req, res, next) {
-  console.log(ACF.methods);
-  // ACF.methods.GameInterval().call()
-  //   .then(response => {
-  //     console.log('jm contract response:', response);
-  //     res.send(response)
-  //   })
-  //   .catch(err => {
-  //     console.log('uh oh', err);
-  //     res.send(err)
-  //   })
+function GameInterval(req, res, next) {
+  ACF.methods.GameInterval().call()
+    .then(response => {
+      console.log('jm contract response:', response);
+      res.send(response)
+    })
+    .catch(err => {
+      console.log('uh oh', err);
+      res.send(err)
+    })
+}
+
+function betOnRobot(req, res, next) {
+  // true = robot1
+  // false = robot2
+  // e.g. BetOnRobot(true)
+  ACF.methods.BetOnRobot().send()
+    .then(response => {
+      res.send(response)
+    })
+    .catch(err => {
+      res.send(err)
+    })
+}
+
+function startGame(req, res, next) {
+  // must be sent from authorized acct.
+  ACF.methods.startGame().send()
+  .then(response => {
+    res.send(response)
+  })
+  .catch(err => {
+    res.send(err)
+  })
+}
+
+function endGame(req, res, next) {
+  // int for robot id.
+  // endGame(1)
+  ACF.methods.endGame().send()
+  .then(response => {
+    res.send(response)
+  })
+  .catch(err => {
+    res.send(err)
+  })
+}
+
+function GetWinnings(req, res, next) {
+  // needs a gameId
+  // GetWinnings(gameId)
+  ACF.methods.GetWinnings().send()
+  .then(response => {
+    res.send(response)
+  })
+  .catch(err => {
+    res.send(err)
+  })
+}
+
+function moveRobot(req, res, next) {
+  // robotid, direction, speed
+  // message.value
+  // moveRobot(1, 3, 10)
+  ACF.methods.moveRobot().send()
+  .then(response => {
+    res.send(response)
+  })
+  .catch(err => {
+    res.send(err)
+  })
 }
 
 function getAccount(req, res, next) {
@@ -463,5 +523,6 @@ module.exports = {
   balanceOf: balanceOf,
   sendToContract: sendToContract,
   getAccount: getAccount,
-  robots: robots
+  betOnRobot: betOnRobot,
+  GameInterval: GameInterval
 }
