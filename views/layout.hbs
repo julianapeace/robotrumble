@@ -28,6 +28,9 @@
   var clock;
   const Http = new XMLHttpRequest();
 
+  var driveSeatsAllState = "All seats are available!"
+  var driveSeatsOneState = "One seat available!"
+
   function emitStart() {
     const url='/robots'; // TODO: emits ACF.methods.startGame() event
     Http.open("GET", url);
@@ -174,6 +177,55 @@
   function loginWithPortis() {
     portis.showPortis();
   }
+</script>
+
+
+<script type="text/javascript">
+  function SwapDivPurchaseDriveAndControl(div1,div2)
+  {
+    d1 = document.getElementById(div1);
+    d2 = document.getElementById(div2);
+    if( d2.style.display == "none" )
+    {
+        d1.style.display = "none";
+        d2.style.display = "block";
+    }
+    else
+    {
+        d1.style.display = "block";
+        d2.style.display = "none";
+    }
+  }
+</script>
+
+<script>
+  $('#driver1-purchase-btn').on('click', function() {
+		alert('Purchasing Driver 1.\nSHOULD OPEN PORTIS PAYMENT.')
+
+    $('#driver1-purchase-btn').css({display: "none"})
+    $('#robot-1-button-holder').css({display: "block"})
+	});
+  
+  $('#driver2-purchase-btn').on('click', function() {
+		alert('Purchasing Driver 2.\nSHOULD OPEN PORTIS PAYMENT.')
+    $('#driver2-purchase-btn').css({display: "none"})
+    $('#robot-2-button-holder').css({display: "block"})
+	});
+</script>
+
+<script>
+  // Get a reference to the database service
+  var database = firebase.database();
+  var robotState = firebase.database().ref('robots/robot1')
+  robotState.on('value', function(snapshot) {
+    
+    var snap = snapshot.val()
+    console.log('SNAPSHOT: ' + snap)
+    if(snap.availableSeats = 1) {
+      $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
+    }
+  });
+
 </script>
 
 </body>
