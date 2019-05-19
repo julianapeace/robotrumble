@@ -21,11 +21,25 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3@0.19.0/dist/web3.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        if (typeof web3 !== 'undefined') {
+            console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+            window.web3 = new Web3(web3.currentProvider);
+
+            console.log('booyah', web3.eth.account[0]);
+
+        } else {
+            document.getElementById('output').innerHtml = 'Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>'
+        }
+    })
+</script>
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
   var clock;
@@ -37,16 +51,6 @@
   function emitStart() {
     const url='/robots'; // TODO: emits ACF.methods.startGame() event
     Http.open("GET", url);
-    Http.send();
-    Http.onreadystatechange=(e)=>{
-      console.log(Http.responseText)
-    }
-  }
-
-  function sendAddress(address) {
-    const url='/getaccount'; // TODO: emits ACF.methods.startGame() event
-    var params="address="+address
-    Http.open("GET", url+"?"+params, true);
     Http.send();
     Http.onreadystatechange=(e)=>{
       console.log(Http.responseText)
@@ -193,19 +197,18 @@
 <script>
   $('#driver1-purchase-btn').on('click', function() {
 
-    portis.onLogin((walletAddress, email) => {
-      // you're logged in. TODO: make a payment, callback here.
+    alert('Purchasing Driver 1.\nSHOULD OPEN PORTIS PAYMENT.')
+    $('#driver1-purchase-btn').css({display: "none"})
+    $('#robot-1-button-holder').css({display: "block"})
 
-      // paycontract transactionobject.
+    // portis.onLogin((walletAddress, email) => {
+    //   // you're logged in. TODO: make a payment, callback here.
+    //   // paycontract transactionobject.
+    //   document.getElementById("app").innerHTML = `
+    //   <div> Wallet Address: ${walletAddress} </div>
+    // `;
+    // });
 
-  		alert('Purchasing Driver 1.\nSHOULD OPEN PORTIS PAYMENT.')
-      $('#driver1-purchase-btn').css({display: "none"})
-      $('#robot-1-button-holder').css({display: "block"})
-
-      document.getElementById("app").innerHTML = `
-      <div> Wallet Address: ${walletAddress} </div>
-    `;
-    });
 	});
 
   $('#driver2-purchase-btn').on('click', function() {
