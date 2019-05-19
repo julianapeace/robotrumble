@@ -1,7 +1,7 @@
+const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'thundercore');
+const web3 = new Web3(portis.provider);
 
-// var web3 = new Web3('https://mainnet-rpc.thundercore.com'); //https://testnet-rpc.thundercore.com:8544
-let address = "0x75c8216c05c1c8f907374a34e835ec22093b3ed4" //0x7cb50610e7e107b09acf3fbb8724c6df3f3e1c1d
-0x75c8216c05c1c8f907374a34e835ec22093b3ed4
+let address = '0x75c8216c05c1c8f907374a34e835ec22093b3ed4'
 
 let ABI = [
   {
@@ -367,13 +367,17 @@ let ABI = [
     "type": "function"
   }
 ]
-var RobotContract = web3.eth.contract(ABI).at(address) // web3 0.2v
+
+// var RobotContract = web3.eth.contract(ABI).at(address) // web3 0.2v
+var RobotContract = new web3.eth.Contract(ABI, address)
 
 console.log("WHERE ARE THE METHODSSSS ======>", RobotContract.methods);
 
 function GameInterval() {
   console.log('HELLL YEHAHHHAHH');
-	RobotContract.GameInterval().then(res => {
+	RobotContract.methods.GameInterval().call()
+	.then(res => {
+		// console.log('thanks itay and uriel');
 		console.log(res);
 	})
 	.catch(err => {
@@ -381,7 +385,9 @@ function GameInterval() {
 	})
 }
 
-function betOnRobot(req, res) {
+GameInterval()
+
+function betOnRobot() {
   // true = robot1
   // false = robot2
   // e.g. BetOnRobot(true)
@@ -433,11 +439,16 @@ function moveRobot(req, res) {
   // robotid, direction, speed
   // message.value
   // moveRobot(1, 3, 10)
-  RobotContract.methods.moveRobot().send()
-  .then(response => {
-    res.send(response)
-  })
+	web3.eth.getAccounts()
+	.then(accounts => {
+		RobotContract.methods.moveRobot(1, 10, 20).send({
+			from: accounts[0],
+			value: 10**18,
+		})
+	})
   .catch(err => {
     res.send(err)
   })
 }
+
+moveRobot()
