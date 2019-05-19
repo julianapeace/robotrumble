@@ -94,7 +94,7 @@ body {
 } */
 .btn-custom {
   display: inline-block;
-  transition: 0.3s all ease-in-out;
+  transition: 0.1s all ease-in-out;
   outline: 0;
   cursor: pointer;
   padding: 18px 70px;

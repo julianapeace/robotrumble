@@ -16,12 +16,23 @@ var express = require('express')
 var cors = require('cors');
 var app = express()
 var Web3 = require('web3');
+require('dotenv').config();
 
 const body_parser = require('body-parser');
-// const port = process.env.PORT || 8000;
 const port = process.env.PORT || 8181;
+var firebase = require('firebase')
+var config = {
+      apiKey: process.env.FIREBASE_APIKEY,
+      authDomain: process.env.FIREBASE_AUTHDOMAIN,
+      databaseURL: process.env.FIREBASE_DBURL,
+      projectId: process.env.FIREBASE_PROJECTID,
+      storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID
+    }
+
+firebase.initializeApp(config);
+const rootRef = firebase.database().ref();
 var webThree = require('./webThree');
-require('dotenv').config();
 app.use(cors());
 
 if (app.get('env') === 'development') {
@@ -67,6 +78,12 @@ app.get('/', function (req, res) {
 
 app.get('/robots', webThree.robots); //gameIntervals()
 app.get('/getaccount', webThree.getAccount);
+app.get('/writeToDb', function (req, res) {
+  var fbData = {
+    speed: "10"
+  }
+  rootRef.child('robots').child('robot1').set(fbData)
+} )
 
 app.listen(port, function () {
   console.log('listening on port ' + port)
