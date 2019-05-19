@@ -75,7 +75,7 @@ body {
 .robot-2-button-holder > .betButton { opacity: 0; }
 .robot-2:hover .betButton { opacity: 1 }
 
-.btn-custom {
+/* .btn-custom {
   display: inline-block;
   transition: 0.3s all ease-in-out;
   outline: 0;
@@ -87,10 +87,27 @@ body {
   border: 2px solid #F44336;
   color: #F44336;
   margin-top: 18px;
-}
-.btn-custom:nth-of-type(2) {
+} */
+/* .btn-custom:nth-of-type(2) {
   color: #1DE9B6;
   border-color: #1DE9B6;
+} */
+.btn-custom {
+  display: inline-block;
+  transition: 0.3s all ease-in-out;
+  outline: 0;
+  cursor: pointer;
+  padding: 18px 70px;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  font-size: 20px;
+  border: 2px solid #FBC02D;
+  color: #FBC02D;
+  margin-top: 18px;
+}
+.btn-custom:nth-of-type(2) {
+  color: #7C4DFF;
+  border-color: #7C4DFF;
 }
 .btn-custom:nth-of-type(3) {
   color: #FBC02D;
@@ -100,14 +117,24 @@ body {
   color: #7C4DFF;
   border-color: #7C4DFF;
 }
-.btn-custom:hover {
+/* .btn-custom:hover {
   background: #F44336;
   color: black;
 }
 .btn-custom:hover:nth-of-type(2) {
   background: #1DE9B6;
   color: black;
+} */
+
+.btn-custom:hover {
+  background: #FBC02D;
+  color: black;
 }
+.btn-custom:hover:nth-of-type(2) {
+  background: #7C4DFF;
+  color: black;
+}
+
 .btn-custom:hover:nth-of-type(3) {
   background: #FBC02D;
   color: black;
