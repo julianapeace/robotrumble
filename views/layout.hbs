@@ -232,7 +232,7 @@
   // Get a reference to the database service
   var database = firebase.database();
   var robot1Control = firebase.database().ref('controls/robot1')
-  {{!-- var robot1State = firebase.database().ref('robots/robot1')
+  var robot1State = firebase.database().ref('robots/robot1')
   var robot2State = firebase.database().ref('robots/robot2')
 
   robot1State.on('value', function(snapshot) {
@@ -268,8 +268,8 @@
       $('#message-update').empty()
       $('#message-update').append('<h2>' + driveSeatsOneState + '</h2>')
     }
-<<<<<<< HEAD
-  }); --}}
+
+  });
 
   // robotId: {1, 2}
   // command: {l, f, re, r} //left, forward, reload, right
@@ -311,10 +311,6 @@
         break
     }
   }
-
-=======
-  });
->>>>>>> b4e655321a586d158cf3b1acafc27418f89d03db
 </script>
 
 <script>
@@ -346,6 +342,17 @@
       $('#driver-2-img').attr('src','/img/' + newImg);
     }
 
+  }
+</script>
+
+<script>
+  const portis = new Portis('a7d9e142-dddf-4937-ad17-042eb7391cb7', 'mainnet');
+  const web3 = new Web3(portis.provider);
+</script>
+
+<script>
+  function loginWithPortis() {
+    portis.showPortis();
   }
 </script>
 
