@@ -16,30 +16,15 @@
 </header>
 <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
-<!-- Login -->
-{{!-- <script src="https://app.tor.us/embed.min.js" integrity="sha256-hq29/zh1T7jaH41IlICtfLI0pvHAdjXW4OZ2P3agMSM=" crossorigin="anonymous"></script> --}}
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3@0.19.0/dist/web3.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3@0.19.0/dist/web3.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/@portis/web3/umd/index.min.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
-<script type="text/javascript">
-    window.addEventListener('load', function () {
-        if (typeof web3 !== 'undefined') {
-            console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
-            window.web3 = new Web3(web3.currentProvider);
-
-            console.log('booyah', web3.eth.account[0]);
-
-        } else {
-            document.getElementById('output').innerHtml = 'Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>'
-        }
-    })
-</script>
 <script src="js/flipclock.min.js"></script>
 <script type="text/javascript">
   var clock;
@@ -231,7 +216,6 @@
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  console.log(firebase);
   // Get a reference to the database service
   var database = firebase.database();
   var robot1State = firebase.database().ref('robots/robot1')
@@ -304,6 +288,49 @@
 
   }
 </script>
+
+<script>
+    	window.addEventListener('load', async () => {
+            // Modern dapp browsers...
+            if (window.ethereum) {
+                window.web3 = new Web3(ethereum);
+                try {
+                    // Request account access if needed
+                    await ethereum.enable();
+                    // Acccounts now exposed
+                    OnCheckingDone();
+                }
+                catch (error) {
+                    OnError("User denied access to Metamask for this app");
+                }
+            }
+            // Legacy dapp browsers...
+            else if (window.web3) {
+                window.web3 = new Web3(web3.currentProvider);
+                // Acccounts always exposed
+                OnCheckingDone();
+            }
+            // Non-dapp browsers...
+            else {
+                OnError('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        });
+    	function OnCheckingDone()
+    	{
+    		if(typeof(window.web3.eth.accounts[0]) == 'undefined')
+    		{
+    			OnError("Please log into Metamask to play on HIPR.");
+    		}
+    		else
+    		{
+                HIPRInternal.init()
+    		}
+    	}
+    	function OnError(message)
+    	{
+            // window.location.href = "/";
+    	}
+    </script>
 
 </body>
 </html>
