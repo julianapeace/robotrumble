@@ -1,10 +1,6 @@
  # Robot Rumble
-<p align="center">
-  <img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" height="400">
-  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/811/941/datas/gallery.jpg" height="400">
-</p>
 
-Solarized dark             |  Solarized Ocean
+ |  
 :-------------------------:|:-------------------------:
 <img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" width="200">  |  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/811/941/datas/gallery.jpg" width="700">
 
