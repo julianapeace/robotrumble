@@ -1,7 +1,13 @@
  # Robot Rumble
 <p align="center">
-  <img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" width="400">
+  <img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" height="400">
+  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/811/941/datas/gallery.jpg" height="400">
 </p>
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+<img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" width="200">  |  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/811/941/datas/gallery.jpg" width="700">
+
 The next generation of GAMING on the BLOCKCHAIN is NOT just VIRTUAL it is CYBER-PHYSICAL - A mixture of (1) physical gaming agents, (2) immersive online interactions, and (3) real-time economic transactions. RobotRumble brings you the future of gaming on the blockchain through real-time physical one-on-one robot battles and real-time betting.
 
 ## What it does
