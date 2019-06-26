@@ -1,6 +1,6 @@
  # Robot Rumble
 
- |  
+ Robot Rumble             |  A Racing Robot Game on the Blockchain
 :-------------------------:|:-------------------------:
 <img src="https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif" width="200">  |  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/811/941/datas/gallery.jpg" width="700">
 
