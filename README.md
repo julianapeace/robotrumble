@@ -23,7 +23,7 @@ We are proud of that this is a production-ready MVP We are proud that our Dapp i
 Everything. Literally. We are proud of the pain, the suffering, and the tears
 
 ## What We learned
-Blockchain transaction time is important for an interactive experience SIdechain / interchain communication is difficult Current blockchain products lack a seamless interactions Don't forget again to your own router (BYOR) when working with robots at a hackathon (an a wifi-extender)
+Blockchain transaction time is important for an interactive experience Sidechain / interchain communication is difficult Current blockchain products lack a seamless interactions Don't forget again to your own router (BYOR) when working with robots at a hackathon (an a wifi-extender)
 
 ## What's next for RobotRumble
 (1) Full integration into AR/VR (2) Fully deploy on other mainnets. (3) Develop are back at our robotics lab. (4) Integrate our other robots, including our humanoid robots. (5) Improve incentives model. (6) Improve UI/UX.
@@ -39,4 +39,9 @@ Blockchain transaction time is important for an interactive experience SIdechain
 - game-theory
 
 ## Try it out
- www.ec2-54-90-99-64.compute-1.amazonaws.com
+TBD
+
+## Creators
+Irvin Carden
+Julie Mei
+John May
